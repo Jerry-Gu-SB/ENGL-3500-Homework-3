@@ -16,8 +16,8 @@
 VAR has_rabbit = false 
 // ~ has_hedgehog = true 
 VAR has_hedgehog = false
-VAR checked_doors = 0
 
+VAR checked_doors = 0
 You stand before four doors. 
 // need to go to the first divert
 -> doors
@@ -26,7 +26,9 @@ You stand before four doors.
 == doors ==
 * Door one 
     Behind door one is a stuffed rabbit. You take the rabbit. 
-    ~ has_rabbit = "true" 
+    // need to retypecast as a bool not a string
+    // has_rabbit = "true"
+    ~ has_rabbit = true
     // ~ checked_doors+
     ~ checked_doors++
     -> doors
@@ -78,18 +80,21 @@ You stand before four doors.
 == how_do_i_wake_up ==
 
 // ~ temp chosen_animal = 0
-VAR chosen_animal = 0
+VAR chosen_animal = ""
 * Pinch yourself. -> how_do_i_wake_up
 * Jump up and down -> how_do_i_wake_up
 * Stare at the stuffed animals quizically. -> how_do_i_wake_up 
 * "You must choose one of us."
     * * Choose rabbit. 
-    ~ chosen_animal = "rabbit"
-    -> how_do_i_wake_up
+        ~ chosen_animal = "rabbit"
+        // -> how_do_i_wake_up
+        -> you_finally_wake_up_on_your_own
     * * Choose hedgehog. 
-    ~ chosen_animal = "hedgehog"
-    -> how_do_i_wake_up
--> you_finally_wake_up_on_your_own
+        ~ chosen_animal = "hedgehog"
+        -> you_finally_wake_up_on_your_own
+        // -> how_do_i_wake_up
+// logic error, just put these into the you finally wake
+// -> you_finally_wake_up_on_your_own
 
 // = you_finally_wake_up_on_your own
 == you_finally_wake_up_on_your_own ==
